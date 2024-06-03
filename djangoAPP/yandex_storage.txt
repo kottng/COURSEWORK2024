@@ -1,0 +1,4 @@
+curl -X POST \
+https://oauth.yandex.ru/token \
+-d "grant_type=authorization_code&code=3141646&client_id=abccd4f3225843aeacc5034459d65098&client_secret=66f266e375464311afd78a6794f4b7c6"
+{"access_token": "y0_AgAAAAAS3rdJAAviKQAAAAEGQVyCAADdQC7q20lD_IFHBjxkcIX9osfLDQ", "expires_in": 31536000, "refresh_token": "1:YIyZFYNf33jmpS8L:_Lk0hGu4_QSkZgilUaddSoxYATpxpHrjuO2s3MWQe3Pk01rnkgAzFAxBu6iTIP2Y1pVUvmJTFqXW89_4Rg:wGtFff2VcZo87y5b3OyXVA", "token_type": "bearer"}(env) vboxuser@CourseWork2024:~/Desktop/CourseWork2024FINAL/backend/djangoAPP$ 

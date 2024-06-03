@@ -1,0 +1,34 @@
+{% extends 'PredictionApp/layouts/main.html' %}
+{% load static %}
+
+{% block title %}
+Analytics
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="row">
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <img src="{{ original_image_url }}" alt="Original Image" class="img-fluid">
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <img src="{{ processed_image_url }}" alt="Processed Image" class="img-fluid">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card" style="background-color: rgba(97, 172, 151, 1); border: none; border-radius: 5px; box-shadow: inset 0 0 15px rgb(255, 255, 255); padding: 1rem; color:white">
+                    <div class="card-body">
+                        <h4 class="card-title">Растение</h4>
+                        <p class="card-text">Сорт: {{ plant.variety }}</p>
+                        <p class="card-text">Уникальный ID: {{ plant.identifier }}</p>
+                        <p class="card-text">Дата посадки: {{ plant.planting_date }}</p>
+                        <p class="card-text">Описание: {{ plant.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

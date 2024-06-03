@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Button Highlight</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Page background */
+    body {
+      {% comment %} background: rgb(43,150,127);
+      background: linear-gradient(90deg, rgba(43,150,127,1) 0%, rgba(31,212,135,1) 50%, rgba(43,150,127,1) 100%); {% endcomment %}
+      background: rgb(34,129,108);
+      background: linear-gradient(90deg, rgba(34,129,108,1) 0%, rgba(69,204,146,1) 95%);
+    }
+
+    /* Custom button style */
+    .btn-highlight {
+      background-color: #006400; /* Dark green background */
+      color: white;
+      border: none;
+      border-radius: 8px; /* Rounded corners */
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Add shadow */
+      transition: 0.3s; /* Transition effect to shadow on hover */
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .btn-highlight:hover {
+      box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" class="container mt-5">
+  <!-- Button with custom style -->
+  <button class="btn btn-highlight" @click="handleClick">Click Me!</button>
+</div>
+
+<!-- Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  new Vue({
+    el: '#app',
+    methods: {
+      handleClick() {
+        alert('Button clicked!');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

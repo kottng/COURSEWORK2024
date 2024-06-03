@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{%block title%} {%endblock title%}</title>
+        <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+        <style>
+            body {
+                {% comment %} background: rgb(34, 129, 108);
+                background: linear-gradient(90deg, rgba(34, 129, 108, 1) 0%, rgba(69, 204, 146, 1) 95%); {% endcomment %}
+                background: rgb(33,122,103);
+                background: linear-gradient(90deg, rgba(33,122,103,1) 63%, rgba(52,152,109,1) 100%);
+            }
+        </style>
+    </head>
+
+    <body style="padding-top:5rem">
+        {% include "PredictionApp/layouts/includes/navbar.html" %}
+        {% block content%} {% endblock content%}
+        <script src="{% static '/js/bootstrap.js' %}"></script>
+        {%block scripts%} {%endblock scripts%}
+    </body>
+</html>
+

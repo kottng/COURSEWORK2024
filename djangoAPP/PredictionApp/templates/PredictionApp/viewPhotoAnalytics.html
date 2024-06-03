@@ -1,0 +1,96 @@
+{% extends 'PredictionApp/layouts/main.html' %}
+{% load static %}
+
+{% block title %}
+Photo analytics
+{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card" style="background-color: rgba(97, 172, 151, 1); border: none; border-radius: 5px; box-shadow: inset 0 0 15px rgb(255, 255, 255); padding: 1rem; color:white">
+        <h1>Заболевания растения:</h1>
+        <table class="table table-bordered" style="color:white">
+            <thead>
+                <tr>
+                    <th>input photo</th>
+                    <th>output photo</th>
+                </tr>
+            </thead>
+            <tbody id="photo-table-body">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-light mt-4"> Назад </a> 
+    </div>
+</div>
+
+<script>
+    function fetchProcessedPhotos() {
+        fetch('{% url "get_processed_photos" archive_note.id %}')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('photo-table-body');
+            tableBody.innerHTML = '';
+            data.processed_photos.forEach(photo => {
+                const row = document.createElement('tr');
+                const originalImageCell = document.createElement('td');
+                const processedImageCell = document.createElement('td');
+
+                originalImageCell.innerHTML = `<img src="${photo.original_image_url}" alt="Original Image" class="img-fluid mb-2">`;
+                if (photo.processed_image_url) {
+                    processedImageCell.innerHTML = `<img src="${photo.processed_image_url}" alt="Processed Image" class="img-fluid">`;
+                } else {
+                    processedImageCell.innerHTML = `<img src="${photo.original_image_url}" alt="Original Image" class="img-fluid">`;
+                }
+
+                row.appendChild(originalImageCell);
+                row.appendChild(processedImageCell);
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching processed photos:', error));
+    }
+
+    setInterval(fetchProcessedPhotos, 5000);  // Fetch processed photos every 5 seconds
+</script>
+
+{% endblock content %}
+
+{% comment %} {% extends 'PredictionApp/layouts/main.html' %}
+{% load static %}
+
+{% block title %}
+Photo analytics
+{% endblock title %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card" style="background-color: rgba(97, 172, 151, 1); border: none; border-radius: 5px; box-shadow: inset 0 0 15px rgb(255, 255, 255); padding: 1rem; color:white">
+        <h1>Заболевания растения:</h1>
+        <table class="table table-bordered" style="color:white">
+            <thread>
+                <tr>
+                    <th>input photo</th>
+                    <th>output photo</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for photo in processed_photos %}
+                    <tr>
+                        <td>
+                            <img src="{{ photo.original_image_url }}" alt="Original Image" class="img-fluid mb-2">
+                        </td>
+                        <td>
+                            <img src="{{ photo.processed_image_url }}" alt="Processed Image" class="img-fluid">
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-light mt-4"> Назад </a> 
+    </div>
+</div>
+
+{% endblock content %} {% endcomment %}

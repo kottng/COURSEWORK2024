@@ -1,0 +1,33 @@
+{% extends 'PredictionApp/layouts/main.html' %}
+{% load static %}
+
+{% block title %}
+My profile
+{% endblock title %}
+
+{% block content %}
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-4" style="color:white">Детали пользователя</h1>
+                <hr style="color:white">
+            </div>
+        </div>
+        <div class="card" style="background-color: rgba(97, 172, 151, 1); border: none; border-radius: 5px; box-shadow: inset 0 0 15px rgb(255, 255, 255); padding: 1rem; color:white">
+            <h2>Добрый день, {{ user.first_name }} {{ user.last_name }}!</h2>
+            <br>
+            <form method="post" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-light float-end" onclick="return confirm('Are you sure you want to edit your account?')">Изменить поля</button>
+            </form>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-light"> Назад </a> 
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+
+
+

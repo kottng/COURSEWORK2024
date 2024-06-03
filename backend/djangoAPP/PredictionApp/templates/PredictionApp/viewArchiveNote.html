@@ -1,0 +1,66 @@
+{% extends 'PredictionApp/layouts/main.html' %}
+{% load static %}
+
+{% block title %}
+View Archive note
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-4" style="color:white">Архивная запись фото растения</h1>
+        </div>
+    </div>
+    <div class="card" style="background-color: rgba(97, 172, 151, 1); border: none; border-radius: 5px; box-shadow: inset 0 0 15px rgb(255, 255, 255); padding: 1rem; color:white">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card-shadow">
+                    <div class="card-body">
+                        <tr>
+                            <!-- ... existing code ... -->
+                        </tr>
+                    </div>
+                    <form id="post_form" method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ PhotoForm.management_form }}
+                        {% for form in PhotoForm %}
+                            {{ form }}
+                        {% endfor %}
+                        <input type="submit" name="submit" value="Submit" />
+                    </form>
+                    <a href="{% url 'viewPhotoAnalytics' archive_note.id %}" class="btn btn-light" style="justify-content:right; margin-bottom:2rem"> Make analytics </a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered" style="color:white">
+            <thread>
+                <tr>
+                    <th>input photo</th>
+                    <th>output photo</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for photo in archive_note.photo.all %}
+                    <tr>
+                        <td>
+                            <img src="{{ photo.photo.url }}" class="img-fluid" alt="Input Photo" />
+                        </td>
+                        <td>
+                            {% if photo.processed_photo %}
+                                <img src="{{ photo.processed_photo.url }}" class="img-fluid" alt="Processed Photo" />
+                            {% else %}
+                                <img src="{{ photo.photo.url }}" class="img-fluid" alt="Photo" />
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+
+
+            </tbody>
+        </table>
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-light"> Назад </a> 
+    </div>
+</div>
+{% endblock content %}

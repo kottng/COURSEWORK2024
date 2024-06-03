@@ -1,0 +1,11 @@
+django
+numpy
+pandas
+keras
+matplotlib
+scikit-image
+scikit-learn
+tqdm
+tensorflow
+pillow
+cv2
